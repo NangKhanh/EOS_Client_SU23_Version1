@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Hover Overlay</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background: url("BG3.gif") repeat center / cover;
+      transition: background-color 0.5s;
+    }
+    .image-container {
+      position: relative;
+      cursor: pointer;
+    }
+    img {
+      max-width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 5px; /* Bo viền cho ảnh */
+      transition: border 0.3s; /* Hiệu ứng chuyển đổi bo viền trong 0.3 giây */
+    }
+    .image-container.open .img-border {
+      border: 4px solid #d0a01e; /* Màu bo viền khi mở phong thư */
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .image-container:hover .overlay {
+      opacity: 1;
+    }
+    .open-button {
+      padding: 10px 20px;
+      background-color: #d0a01e;
+      color: #fff;
+      border: none;
+      cursor: pointer;
+      position: absolute;
+      transform: translate(-50%, -50%);
+      top: 50%;
+      left: 50%;
+    }
+    .letter {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      display: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 20px;
+      border-radius: 5px;
+      max-width: 80%;
+      font-size: 15px;
+    }
+    .letter.active {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="image-container">
+    <img src="Đóng thư.jpg" alt="Phong thư">
+    <div class="overlay">
+      <div class="overlay-content">
+        <button class="open-button" onclick="openLetter()">Open</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="letter" id="letterContent">
+    <h1>Gửi cậu,</h1>
+    <p>Tớ đã nghĩ nhiều về những điều tớ nên làm hiện tại, rằng làm thế nào để có một cách phù hợp cho tình hình của mình. Tớ biết những điều cậu không muốn nghe, và bản thân tớ cũng dần hết các ý tưởng, và tớ bắt đầu nhớ lại về bọn mình. Tớ với cậu đã bắt đầu như nào nhỉ?</p>
+    <p>Ta bắt đầu bằng những lá thư...</p>
+    <p>Tớ sợ cậu sẽ nghĩ là chỉ khi nào cậu giận tớ, tớ mới viết cho cậu. Nhưng Bảo Anh ơi, hãy bỏ qua cho tớ nhé. Lá thư gần nhất tớ lại thế nào mà quên mất không kẹp nó vào cuốn Miko cho cậu. Xét về tình trạng hiện tại, tớ không thể gửi cho cậu một lá thư như mọi lần được, nên tớ tìm một cách mới, đẹp hơn, hiện đại hơn, và có một chút âm nhạc nữa. Mong rằng Bảo Anh sẽ thấy vui với nỗ lực lần này của tớ.</p>
+    <p>Hai ngày gần đây, tớ học thêm một vài thứ về web và code, tớ nhờ Khánh (Một người bạn tớ tin là giỏi máy móc vi tính hơn tớ nhiều) giúp tớ thiết kế một trang thư gọn hơn, và đỡ vô tri hơn theo lời bạn ấy. Khánh có hỏi tớ tại sao không lấy mấy cái mẫu có sẵn trên web. Tớ bảo rằng như thế thì chẳng có tí chân thành nào cả. Một lá thư tay có sức nặng riêng của nó, và với một lá thư máy tớ nghĩ nó cũng nên có một sức nặng tương đương. Vì thế nên việc viết thư nó mới có ý nghĩa, cậu có nghĩ vậy không?</p>
+    <p>...Những lá thư đầu tiên tớ gửi cậu, cũng bắt đầu từ những số 0 và 1 như bây giờ. Chưa phải bằng giấy và mực. Tớ viết ra những nỗi nhớ cố hữu của tớ cho cảnh quan, và từ cảnh quan tớ ngẫm nhiều hơn về bản thân mình. Tớ gọi chung những cảm giác đó, là những cảm giác dành cho Biển - một thứ không có thật và vì thế nên sẽ không biết mất.</p>
+    <p>Không lâu sau, tớ dần thấy được sự tương đồng nhiều hơn giữa cậu và Biển. Tớ thấy được tự do khi cạnh cậu chỉ bằng số lần gặp đếm trên đầu ngón tay, giống như cái cách tớ thấy được tự do cạnh Biển ngay cả khi Biển không có thật. Cậu xoa dịu những tổn thương của tớ ngay cả khi không cần làm gì cả, như cái cách Biển vỗ về tớ ngay cả khi Biển chỉ là tưởng tượng thôi</p>
+    <p>Với tớ, chuyện của mình, đã bắt đầu như thế. Tớ có những điều chưa phải, những điều cần học, những điều phải làm. Và có những lúc làm Biển của tớ buồn...</p>
+    <p>Tớ sẽ không để Bảo Anh của tớ phải thêm buồn vì tớ nữa, vì thế nên tớ mong cậu cho tớ một cơ hội để trở nên điềm đạm và cẩn trọng với cậu và với chuyện chúng mình hơn..</p>
+    <p>Cảm ơn Bảo Anh của tớ nhiều vì đã đọc đến cuối thư này,</p>
+    <p>Tớ nhớ và yêu cậu nhiều lắm, Biển của tớ..</p>
+    <!-- Thêm các nội dung khác của phong thư -->
+  </div>
+
+  <audio id="audioPlayer" src="Travelers - Copy.mp3" loop></audio>
+
+  <script>
+    function openLetter() {
+      var letter = document.getElementById("letterContent");
+      letter.classList.add("active");
+      var imageContainer = document.querySelector(".image-container");
+      imageContainer.classList.add("open");
+      imageContainer.style.display = "none";
+
+      // Phát âm thanh khi mở phong thư
+      var audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.play();
+    }
+
+    // Tự động phát âm thanh khi trang web được tải
+    window.onload = function () {
+      var audioPlayer = document.getElementById("audioPlayer");
+      audioPlayer.play();
+    };
+  </script>
+</body>
+</html>
